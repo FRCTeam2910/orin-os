@@ -1,0 +1,23 @@
+[Match]
+Type=ether
+Name=!veth*
+KernelCommandLine=!nfsroot
+KernelCommandLine=!ip
+
+[Network]
+# Acquire an IPv4 address via DHCP from the radio/FMS when one is available.
+# Skip IPv6 DHCP entirely (no DHCPv6 server on the robot network).
+DHCP=ipv4
+# Use IPv4 link-local (169.254.x.x) as a zero-config fallback so the device is
+# reachable via mDNS even when there is no DHCP server (e.g. a direct cable
+# from a laptop for initial configuration). There is no downside when DHCP
+# succeeds; link-local is only engaged after DHCP fails or times out.
+LinkLocalAddressing=ipv4
+# Do not accept IPv6 Router Advertisements.  There is no IPv6 router on the
+# robot network, and waiting for RAs adds ~10 seconds to boot.
+IPv6AcceptRA=no
+
+[DHCP]
+UseMTU=yes
+RouteMetric=10
+ClientIdentifier=mac

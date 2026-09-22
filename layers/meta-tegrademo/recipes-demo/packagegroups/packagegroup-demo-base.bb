@@ -91,6 +91,8 @@ RDEPENDS:${PN} = " \
     sysstat \
     can-utils \
     net-tools \
+    mdns \
+    mdns-libnss-mdns \
     parted \
     file \
     gdb \
